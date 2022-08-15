@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+  body{
+    background-color: gray;
+  }
+  .inf{
+    margin: auto;
+    width: 500px;
+    background-color: wheat;
+    height: 500px; 
+    padding: 10px;
+    display: flex;
+  }
+  .toast{
+    display: flex;    
+    padding: 0px 10px 0px 10px;
+    border-left:4px solid black;
+    margin: 10px 10px 30px 10px;
+    background-color: white;
+    border-radius: 10px;
+    animation: slideInleft ease .2s, fadeOut linear 2s 2s forwards;
+  }
+  .body{
+padding-left: 20px;
+padding-right: 10px;
+flex-grow: 1;
+  }
+  @keyframes slideInleft{
+    from{
+     
+      transform: translateX(calc(100% + 40px));
+    }
+    to {
+     
+      transform: translateX(0);
+    }
+  }
+  @keyframes fadeOut{
+    to{
+      opacity: 0;
+    }
+  }
+  .mss{
+    line-height: 1px;
+    padding-bottom: 10px;
+  }
+  .icon{
+    margin-top: 30px;
+    font-size: 20px;
+    
+  }
+  .close{
+    margin-top: 30px;
+    font-size: 20px;
+    color:gray;
+    cursor: pointer;
+  }
+  .close--hover:hover{
+    color: gainsboro;
+  }
+  #toast{
+    position: fixed;
+    top:30px;
+    right: 30px;
+  }
+  .btn{
+    margin: auto;
+    text-align: center;
+    background-color: rgb(8, 202, 8);
+    width: 200px;
+    height: 40px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .btn--hover:hover{
+    background-color: rgb(25, 157, 25);
+  }
+  .btn--success{
+    padding: 10px;
+  }
+  .toast--success .icon{
+    color: greenyellow;
+  }
+  .toast--info .icon{
+    color: blue;
+  }
+  .toast--warning .icon{
+    color: yellow;
+  }
+  .toast--error .icon{
+    color: red;
+  }
+</style>
+<body>  
+  <div id="toast">
+      <!-- <div class="toast toast--success">
+          <div class="icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="body">
+            <h3 class="tilte">success</h3>
+            <p class="mss">${mss}</p>        
+          </div>
+          <div class="close"><i class="fa-solid fa-xmark"></i></div>
+      </div> -->
+      <!-- <div class="toast toast--info">
+        <div class="icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="body">
+          <h3 class="tilte">info</h3>
+          <p class="mss">${mss}</p>        
+        </div>
+        <div class="close"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="toast toast--warning">
+      <div class="icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="body">
+        <h3 class="tilte">warning</h3>
+        <p class="mss">${mss}</p>        
+      </div>
+      <div class="close"><i class="fa-solid fa-xmark"></i></div>
+  </div>
+  <div class="toast toast--error">
+    <div class="icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <div class="body">
+      <h3 class="tilte">error</h3>
+      <p class="mss">${mss}</p>        
+    </div>
+    <div class="close"><i class="fa-solid fa-xmark"></i></div>
+</div> -->
+  </div>  
+    <div class=inf>
+        <div onclick="showSuccess();" class="btn btn--hover">
+          <div class="btn--success">show success</div>       
+        </div>
+        <div onclick="showError();" class="btn btn--hover">
+          <div class="btn--success">show error</div>       
+        </div>
+    </div>
+    <script>
+        function toast({
+          title='',
+          mss='',
+          type='info',
+          duration=3000
+        })
+        { const main = document.getElementById('toast');
+          if (main){ 
+            const toast = document.createElement('div');
+            const autoRemoveID = setTimeout(function(){
+              main.removeChild(toast);
+
+            }, duration + 1000)
+            toast.onclick= function(e){
+              if(e.target.closest('.close')){
+                main.removeChild(toast);
+                clearTimeout(autoRemoveID);
+              }
+            }
+            const icons={
+                success: 'fa-solid fa-circle-check',
+                info:'fa-solid fa-circle-info',
+                warning:'fa-solid fa-circle-exclamation',
+                error:'fa-solid fa-triangle-exclamation'
+            };
+            const icon = icons[type];
+            toast.classList.add('toast', `toast--${type}`);
+            toast.innerHTML=`
+                <div class="icon">
+                    <i class="${icon}"></i>
+                </div>
+                <div class="body">
+                    <h3 class="tilte">${title}</h3>
+                    <p class="mss">${mss}</p>        
+                </div>
+                <div class="close close--hover"><i class="fa-solid fa-xmark"></i></div>
+            `;
+            main.appendChild(toast);
+
+            
+          }
+        }
+        function showSuccess(){
+              toast({
+                          title:'Success',
+                          mss:'Anyone with access can view yourisitors',
+                          type:'success',
+                          duration:3000
+          });
+        }
+        function showError(){
+          toast({
+                          title:'Error',
+                          mss:'Anyone with access can view yourisitors',
+                          type:'error',
+                          duration:3000
+          });
+        }
+          
+        
+    </script>
+</body>
+</html>

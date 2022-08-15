@@ -4,10 +4,62 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="main.js"></script>
+  <title>ReactJs</title>
+  <script  src="main.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
-  
+  <!-- <div id="root"></div>
+  <script type="text/babel">
+    // const ul= React.createElement('ul',
+    //   null,
+    //   React.createElement('li',null,'js'),
+    //   React.createElement('li',null,'reactjs')
+    // )
+   
+    
+    const ul =React.createElement (
+      React.Fragment,
+      null,
+      React.createElement('h1', null, 'heading1'),
+      React.createElement('h2', null, 'heading2')
+    )
+      
+    const rootSP= document.getElementById('root')
+    const root=ReactDOM.createRoot(rootSP)
+    
+    root.render(ul)
+  </script> -->
+  <div id="root"></div>
+  <script type="text/babel">
+    const Reactjs = 'yeu em'
+    const ul = <ul>
+      <li>javascript</li>
+      <li>Reactjs</li>
+      </ul>
+
+    // const ulReact = React.createElement(
+    //   'ul',
+    //   null,
+    //   React.createElement(
+    //     'li',
+    //     null,
+    //     'javasctip'
+    //   ),
+    //   React.createElement(
+    //     'li',
+    //     null,
+    //     'Reactjs'
+    //   )
+    // )
+    const container = document.getElementById('root')
+
+    
+    // ReactDOM.render(ul, document.getElementById('root'))
+    const root = ReactDOM.createRoot(container)
+    root.render(ul)
+  </script>
 </body>
 </html>

@@ -180,7 +180,7 @@ a{text-decoration: none}
   width: 75%;
   display:flex;
   padding: 30px;
-  
+  justify-content: space-between;
 }
 
 .sale{
@@ -372,6 +372,7 @@ a{text-decoration: none}
 .suggest_item{
   display: flex;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 .suggest_item-total{
   
